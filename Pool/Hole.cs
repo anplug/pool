@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Pool
 {
     class Hole
     {

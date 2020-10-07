@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game
+namespace Pool
 {
     public class Ball
     {

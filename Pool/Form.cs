@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Game
+namespace Pool
 {
-    public partial class Form1 : Form
+    public partial class Form : System.Windows.Forms.Form
     {
         List<Ball> balls = new List<Ball>();
         List<Hole> holes = new List<Hole>();
         Ball tempBall;
-        public Form1()
+        public Form()
         {
             InitializeComponent();
             holes.Add(new Hole(100, 400, 50));
