@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Pool
 {
@@ -30,14 +26,14 @@ namespace Pool
        
             balls.Add(new Ball(200, 450, 30, 0.5, Math.PI / 2 + 0.01, true));
             balls.Add(new Ball(800, 450, 30, 0.5, 3 * Math.PI / 2, true)); 
-            */ 
+            */
         }
 
         private void GlobalAction()
         {
             Bitmap map = new Bitmap(board.Width, board.Height);
             Graphics gr = Graphics.FromImage(map);
-            
+
             foreach (Hole hole in holes)
             {
                 gr.FillEllipse(Brushes.Black, hole.X - hole.R, hole.Y - hole.R, hole.R * 2, hole.R * 2);
@@ -45,8 +41,7 @@ namespace Pool
 
             foreach (Ball ball in balls)
             {
-
-                gr.FillEllipse(Brushes.Green, ball.X - ball.R, ball.Y - ball.R, ball.R * 2, ball.R * 2);
+                gr.FillEllipse(ball.Brush, ball.X - ball.R, ball.Y - ball.R, ball.R * 2, ball.R * 2);
                 ball.Tick(board.Width, board.Height);
             }
 
@@ -56,22 +51,22 @@ namespace Pool
                 foreach (Ball ball2 in balls)
                 {
                     if (Math.Sqrt(Math.Pow((ball1.X - ball2.X), 2) + Math.Pow((ball1.Y - ball2.Y), 2)) <= ball1.R + ball2.R &&
-                        !ball1.inRel && !ball2.inRel && ball1 != ball2)
+                        !ball1.InRelation && !ball2.InRelation && ball1 != ball2)
                     // в этом случае шары вошли друг в друга и их необходимо оттолкнуть
                     {
-                        if (!ball1.isMov)
+                        if (!ball1.IsMoving)
                         {
                             ball1.Angle = ball2.Angle + Math.PI;
-                            ball1.isMov = true;
+                            ball1.IsMoving = true;
                             ball1.Speed = ball2.Speed;
                         }
-                        if (!ball2.isMov)
+                        if (!ball2.IsMoving)
                         {
                             ball2.Angle = ball1.Angle + Math.PI;
-                            ball2.isMov = true;
+                            ball2.IsMoving = true;
                             ball2.Speed = ball1.Speed;
                         }
-                  
+
                         double gamma;
                         if (Math.Abs(ball2.X - ball1.X) > 0.001)
                             gamma = Math.Atan((ball2.Y - ball1.Y) / (ball2.X - ball1.X));
@@ -80,22 +75,22 @@ namespace Pool
 
                         ball1.Angle = 2 * Math.PI - ball1.Angle - 2 * gamma;
                         ball2.Angle = 2 * Math.PI - ball2.Angle - 2 * gamma;
-                        
-                        ball1.inRel = true;
+
+                        ball1.InRelation = true;
                         break;
                     }
                     else
                     {
-                        ball1.inRel = false;
+                        ball1.InRelation = false;
                     }
-                }              
+                }
             }
             foreach (Hole hole in holes)
-            {               
+            {
                 foreach (Ball ball in balls)
                 {
                     double d = hole.R + ball.R - Math.Sqrt(Math.Pow(ball.X - hole.X, 2) + Math.Pow(ball.Y - hole.Y, 2));
-                    
+
                     if (d > ball.R / 4)
                     {
                         tempBall = ball;
@@ -104,7 +99,7 @@ namespace Pool
                 }
                 balls.Remove(tempBall);
             }
-            
+
         }
 
         private void TimerTick(object sender, EventArgs e)

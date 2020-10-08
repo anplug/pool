@@ -1,101 +1,76 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Pool
 {
     public class Ball
     {
-        private float x;
-        private float y;
-        private float r;
-        private double speed;
-        private double angle;
-        private bool isMoving;
-        private bool inRelation;
-
-        public Ball(float X, float Y, float R, double Speed, double Ang, bool isMov)
+        public Ball(float x, float y, float r, double speed, double ang, bool isMov)
         {
-            Init(X, Y, R, Speed, Ang, isMov, false);
+            Init(x, y, r, speed, ang, isMov, false);
         }
         public Ball()
         {
             Init(0, 0, 0, 0, 0, false, false);
         }
-        private void Init(float X, float Y, float R, double Speed, double Ang, bool isMov, bool inRel)
+        private void Init(float x, float y, float r, double speed, double angle, bool isMoving, bool inRelation)
         {
-            if (R < 0) R = 1;
-            x = X;
-            y = Y;
-            r = R;
-            speed = Speed;
-            angle = Ang;
-            isMoving = isMov;
-            inRelation = inRel;
+            if (r < 0) r = 1;
+            this.X = x;
+            this.Y = y;
+            this.R = r;
+            this.Speed = speed;
+            Angle = angle;
+            this.IsMoving = isMoving;
+            this.InRelation = inRelation;
+            this.Brush = this.GenerateBrush();
         }
-
+        private SolidBrush GenerateBrush()
+        {
+            Random rand = new Random();
+            byte[] rgb = new byte [3];
+            rand.NextBytes(rgb);
+            return new SolidBrush(Color.FromArgb(rgb[0], rgb[1], rgb[2]));
+        }
         public void Tick(int width, int height)
         {
-            if (isMoving)
+            if (IsMoving)
             {
-                x += (float)(Math.Sin(angle) * r / (1 / speed));
-                y += (float)(Math.Cos(angle) * r / (1 / speed));
-                speed -= speed*0.01;
+                X += (float)(Math.Sin(Angle) * R / (1 / Speed));
+                Y += (float)(Math.Cos(Angle) * R / (1 / Speed));
+                Speed -= Speed * 0.01;
 
-                if (x + r >= width)
+                if (X + R >= width)
                 {
-                    x -= r - (width - x);
-                    angle = -angle;
+                    X -= R - (width - X);
+                    Angle = -Angle;
                 }
-                if (x - r <= 0)
+                if (X - R <= 0)
                 {
-                    x += r - x;
-                    angle = -angle;
+                    X += R - X;
+                    Angle = -Angle;
                 }
-                if (y + r >= height)
+                if (Y + R >= height)
                 {
-                    y -= r - (height - y);
-                    angle = Math.PI - angle;
+                    Y -= R - (height - Y);
+                    Angle = Math.PI - Angle;
                 }
-                if (y - r <= 0)
+                if (Y - R <= 0)
                 {
-                    y += r - y;
-                    angle = Math.PI - angle;
+                    Y += R - Y;
+                    Angle = Math.PI - Angle;
                 }
-                if (Math.Abs(speed) < 0.01)
-                    isMoving = false;
+                if (Math.Abs(Speed) < 0.01)
+                    IsMoving = false;
             }
         }
-        public float X
-        {
-            get { return x; }
-        }
-        public float Y
-        {
-            get { return y; }
-        }
-        public float R
-        {
-            get { return r; }
-            set { r = value; }
-        }
-        public double Angle
-        {
-            get { return angle; }
-            set { angle = value; }
-        }
-        public bool isMov
-        {
-            get { return isMoving; }
-            set { isMoving = value; }
-        }
-        public bool inRel
-        {
-            get { return inRelation; }
-            set { inRelation = value; }
-        }
-        public double Speed
-        {
-            get { return speed; }
-            set { speed = value; }
-        }
+        public float X { get; private set; }
+        public float Y { get; private set; }
+        public float R { get; set; }
+        public double Angle { get; set; }
+        public bool IsMoving { get; set; }
+        public bool InRelation { get; set; }
+        public double Speed { get; set; }
+        public SolidBrush Brush { get; set; }
     }
 }
