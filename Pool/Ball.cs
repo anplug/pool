@@ -3,7 +3,6 @@ using System.Drawing;
 
 namespace Pool
 {
-
     public class Ball
     {
         public float X { get; private set; }
@@ -17,10 +16,6 @@ namespace Pool
         public Ball(float x, float y, float r, double speed, double ang, bool isMov)
         {
             Init(x, y, r, speed, ang, isMov, false);
-        }
-        public Ball()
-        {
-            Init(0, 0, 0, 0, 0, false, false);
         }
         private void Init(float x, float y, float r, double speed, double angle, bool isMoving, bool inRelation)
         {

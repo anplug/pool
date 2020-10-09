@@ -9,7 +9,7 @@ namespace Pool
         public Form()
         {
             InitializeComponent();
-            this.table = new Table(this.Size, this.board);
+            this.table = new Table(this.board, this.amountOfBalls);
         }
         private void ButtonStart_Click(object sender, EventArgs e)
         {
@@ -17,7 +17,7 @@ namespace Pool
         }
         private void ResizeBalls_Click(object sender, EventArgs e)
         {
-            this.table.ResizeLastBall();
+            this.table.ResizeAllBalls();
         }
         private void TimerTick(object sender, EventArgs e)
         {

@@ -7,15 +7,18 @@ namespace Pool
     public class Table
     {
         private readonly System.Windows.Forms.PictureBox board;
-        Size size;
+        private readonly System.Windows.Forms.Label amountOfBallsLabel;
+
+        private int amountOfBalls;
+        private Size size;
         private readonly List<Ball> balls = new List<Ball>();
         private readonly List<Hole> holes = new List<Hole>();
-        Ball tempBall;
 
-        public Table(Size size, System.Windows.Forms.PictureBox board)
+        public Table(System.Windows.Forms.PictureBox board, System.Windows.Forms.Label amountOfBallsLabel)
         {
             this.board = board;
-            SetSize(size);
+            this.amountOfBallsLabel = amountOfBallsLabel;
+            SetSize(board.Size);
         }
         // Can be used to rerender holes on resize
         public void SetSize(Size size)
@@ -28,15 +31,9 @@ namespace Pool
             Random rand = new Random();
 
             balls.Add(new Ball(500, 200, 30, 1, rand.NextDouble() * Math.PI * 2, true));
-            /*
-            balls.Add(new Ball(500, 200, 30, 0.1, 0, true));
-            balls.Add(new Ball(500, 600, 30, 0.1, Math.PI, true));
-       
-            balls.Add(new Ball(200, 450, 30, 0.5, Math.PI / 2 + 0.01, true));
-            balls.Add(new Ball(800, 450, 30, 0.5, 3 * Math.PI / 2, true)); 
-            */
+            this.amountOfBallsLabel.Text = (++this.amountOfBalls).ToString();
         }
-        public void ResizeLastBall()
+        public void ResizeAllBalls()
         {
             Random rand = new Random();
             float r = 1 + (float)rand.Next(49);
@@ -47,12 +44,15 @@ namespace Pool
         }
         private void SpawnHoles()
         {
-            holes.Add(new Hole(0, 0, 25));
+            holes.Add(new Hole(0, 0, 20));
+            holes.Add(new Hole(0, size.Height, 20));
+            holes.Add(new Hole(size.Width, 0, 20));
+            holes.Add(new Hole(size.Width, size.Height, 20));
         }
         public void UpdateTick()
         {
-            Bitmap map = new Bitmap(size.Width, size.Height);
-            Graphics gr = Graphics.FromImage(map);
+            Bitmap frame = new Bitmap(size.Width, size.Height);
+            Graphics gr = Graphics.FromImage(frame);
 
             foreach (Hole hole in holes)
             {
@@ -65,14 +65,14 @@ namespace Pool
                 ball.Tick(size.Width, size.Height);
             }
 
-            this.board.Image = map;
+            this.board.Image = frame;
             foreach (Ball ball1 in balls)
             {
                 foreach (Ball ball2 in balls)
                 {
+                    // Collision detection
                     if (Math.Sqrt(Math.Pow((ball1.X - ball2.X), 2) + Math.Pow((ball1.Y - ball2.Y), 2)) <= ball1.R + ball2.R &&
                         !ball1.InRelation && !ball2.InRelation && ball1 != ball2)
-                    // в этом случае шары вошли друг в друга и их необходимо оттолкнуть
                     {
                         if (!ball1.IsMoving)
                         {
@@ -113,11 +113,11 @@ namespace Pool
 
                     if (d > ball.R / 4)
                     {
-                        tempBall = ball;
+                        balls.Remove(ball);
+                        this.amountOfBallsLabel.Text = (--this.amountOfBalls).ToString();
                         break;
                     }
                 }
-                balls.Remove(tempBall);
             }
         }
     }

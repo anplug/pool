@@ -8,7 +8,7 @@
 
         public Hole(float x, float y, float r)
         {
-            if (r < 0) r = 1;
+            if (r < 1) r = 1;
             this.X = x;
             this.Y = y;
             this.R = r;

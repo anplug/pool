@@ -29,27 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.board = new System.Windows.Forms.PictureBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonResize = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.board = new System.Windows.Forms.PictureBox();
+            this.ballsCountLabel = new System.Windows.Forms.Label();
+            this.amountOfBalls = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
             this.SuspendLayout();
             // 
-            // board
-            // 
-            this.board.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.board.Location = new System.Drawing.Point(0, 0);
-            this.board.Name = "board";
-            this.board.Size = new System.Drawing.Size(1028, 503);
-            this.board.TabIndex = 0;
-            this.board.TabStop = false;
-            // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(910, 12);
+            this.buttonStart.Location = new System.Drawing.Point(891, 5);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(50, 20);
+            this.buttonStart.Size = new System.Drawing.Size(60, 30);
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Spawn";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -58,41 +53,83 @@
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 17;
+            this.timer.Interval = 10;
             this.timer.Tick += new System.EventHandler(this.TimerTick);
             // 
             // buttonResize
             // 
-            this.buttonResize.Location = new System.Drawing.Point(966, 12);
+            this.buttonResize.Location = new System.Drawing.Point(957, 5);
             this.buttonResize.Name = "buttonResize";
-            this.buttonResize.Size = new System.Drawing.Size(50, 20);
+            this.buttonResize.Size = new System.Drawing.Size(60, 30);
             this.buttonResize.TabIndex = 2;
             this.buttonResize.Text = "Resize";
             this.buttonResize.UseVisualStyleBackColor = true;
             this.buttonResize.Click += new System.EventHandler(this.ResizeBalls_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.amountOfBalls);
+            this.panel1.Controls.Add(this.ballsCountLabel);
+            this.panel1.Controls.Add(this.buttonStart);
+            this.panel1.Controls.Add(this.buttonResize);
+            this.panel1.Location = new System.Drawing.Point(0, 460);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1025, 40);
+            this.panel1.TabIndex = 3;
+            // 
+            // board
+            // 
+            this.board.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.board.Location = new System.Drawing.Point(0, 0);
+            this.board.Name = "board";
+            this.board.Size = new System.Drawing.Size(1025, 460);
+            this.board.TabIndex = 4;
+            this.board.TabStop = false;
+            // 
+            // ballsCountLabel
+            // 
+            this.ballsCountLabel.AutoSize = true;
+            this.ballsCountLabel.Location = new System.Drawing.Point(3, 14);
+            this.ballsCountLabel.Name = "ballsCountLabel";
+            this.ballsCountLabel.Size = new System.Drawing.Size(82, 13);
+            this.ballsCountLabel.TabIndex = 3;
+            this.ballsCountLabel.Text = "Amount of balls:";
+            // 
+            // amountOfBalls
+            // 
+            this.amountOfBalls.AutoSize = true;
+            this.amountOfBalls.Location = new System.Drawing.Point(91, 14);
+            this.amountOfBalls.Name = "amountOfBalls";
+            this.amountOfBalls.Size = new System.Drawing.Size(0, 13);
+            this.amountOfBalls.TabIndex = 4;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1028, 503);
-            this.Controls.Add(this.buttonResize);
-            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.board);
+            this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(835, 537);
             this.Name = "Form";
             this.Text = "Form";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.board)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        public System.Windows.Forms.PictureBox board;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button buttonResize;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox board;
+        private System.Windows.Forms.Label ballsCountLabel;
+        private System.Windows.Forms.Label amountOfBalls;
     }
 }
 
