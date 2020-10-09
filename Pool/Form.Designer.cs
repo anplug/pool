@@ -33,9 +33,9 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonResize = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.board = new System.Windows.Forms.PictureBox();
-            this.ballsCountLabel = new System.Windows.Forms.Label();
             this.amountOfBalls = new System.Windows.Forms.Label();
+            this.ballsCountLabel = new System.Windows.Forms.Label();
+            this.board = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
             this.SuspendLayout();
@@ -78,14 +78,13 @@
             this.panel1.Size = new System.Drawing.Size(1025, 40);
             this.panel1.TabIndex = 3;
             // 
-            // board
+            // amountOfBalls
             // 
-            this.board.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.board.Location = new System.Drawing.Point(0, 0);
-            this.board.Name = "board";
-            this.board.Size = new System.Drawing.Size(1025, 460);
-            this.board.TabIndex = 4;
-            this.board.TabStop = false;
+            this.amountOfBalls.AutoSize = true;
+            this.amountOfBalls.Location = new System.Drawing.Point(91, 14);
+            this.amountOfBalls.Name = "amountOfBalls";
+            this.amountOfBalls.Size = new System.Drawing.Size(0, 13);
+            this.amountOfBalls.TabIndex = 4;
             // 
             // ballsCountLabel
             // 
@@ -96,13 +95,14 @@
             this.ballsCountLabel.TabIndex = 3;
             this.ballsCountLabel.Text = "Amount of balls:";
             // 
-            // amountOfBalls
+            // board
             // 
-            this.amountOfBalls.AutoSize = true;
-            this.amountOfBalls.Location = new System.Drawing.Point(91, 14);
-            this.amountOfBalls.Name = "amountOfBalls";
-            this.amountOfBalls.Size = new System.Drawing.Size(0, 13);
-            this.amountOfBalls.TabIndex = 4;
+            this.board.BackColor = System.Drawing.Color.DarkCyan;
+            this.board.Location = new System.Drawing.Point(0, 0);
+            this.board.Name = "board";
+            this.board.Size = new System.Drawing.Size(1025, 460);
+            this.board.TabIndex = 4;
+            this.board.TabStop = false;
             // 
             // Form
             // 

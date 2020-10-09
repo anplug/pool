@@ -30,7 +30,7 @@ namespace Pool
         {
             Random rand = new Random();
 
-            balls.Add(new Ball(500, 200, 30, 1, rand.NextDouble() * Math.PI * 2, true));
+            balls.Add(new Ball(500, 200, 18, 1, rand.NextDouble() * Math.PI * 2, true));
             this.amountOfBallsLabel.Text = (++this.amountOfBalls).ToString();
         }
         public void ResizeAllBalls()
@@ -48,6 +48,8 @@ namespace Pool
             holes.Add(new Hole(0, size.Height, 20));
             holes.Add(new Hole(size.Width, 0, 20));
             holes.Add(new Hole(size.Width, size.Height, 20));
+            holes.Add(new Hole(size.Width / 2, 0, 20));
+            holes.Add(new Hole(size.Width / 2, size.Height, 20));
         }
         public void UpdateTick()
         {

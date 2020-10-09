@@ -27,14 +27,7 @@ namespace Pool
             Angle = angle;
             this.IsMoving = isMoving;
             this.InRelation = inRelation;
-            this.Brush = this.GenerateBrush();
-        }
-        private SolidBrush GenerateBrush()
-        {
-            Random rand = new Random();
-            byte[] rgb = new byte [3];
-            rand.NextBytes(rgb);
-            return new SolidBrush(Color.FromArgb(rgb[0], rgb[1], rgb[2]));
+            this.Brush = new SolidBrush(Color.White);
         }
         public void Tick(int width, int height)
         {
