@@ -20,8 +20,7 @@ namespace Pool
             this.amountOfBallsLabel = amountOfBallsLabel;
             SetSize(board.Size);
         }
-        // Can be used to rerender holes on resize
-        public void SetSize(Size size)
+        public void SetSize(Size size) // Can be used to rerender holes on resize
         {
             this.size = size;
             SpawnHoles();
@@ -51,7 +50,7 @@ namespace Pool
             holes.Add(new Hole(size.Width / 2, 0, 20));
             holes.Add(new Hole(size.Width / 2, size.Height, 20));
         }
-        public void UpdateTick()
+        private void DrawBoard()
         {
             Bitmap frame = new Bitmap(size.Width, size.Height);
             Graphics gr = Graphics.FromImage(frame);
@@ -68,13 +67,20 @@ namespace Pool
             }
 
             this.board.Image = frame;
+        }
+        public void UpdateTick()
+        {
+            DrawBoard();
+            ProcessBallCollisions();
+            ProcessHoleCollisions();
+        }
+        private void ProcessBallCollisions()
+        {
             foreach (Ball ball1 in balls)
             {
                 foreach (Ball ball2 in balls)
                 {
-                    // Collision detection
-                    if (Math.Sqrt(Math.Pow((ball1.X - ball2.X), 2) + Math.Pow((ball1.Y - ball2.Y), 2)) <= ball1.R + ball2.R &&
-                        !ball1.InRelation && !ball2.InRelation && ball1 != ball2)
+                    if (Collide(ball1, ball2))
                     {
                         if (!ball1.IsMoving)
                         {
@@ -107,6 +113,9 @@ namespace Pool
                     }
                 }
             }
+        }
+        private void ProcessHoleCollisions()
+        {
             foreach (Hole hole in holes)
             {
                 foreach (Ball ball in balls)
@@ -121,6 +130,13 @@ namespace Pool
                     }
                 }
             }
+        }
+        private bool Collide(Ball ball1, Ball ball2)
+        {
+            return ball1 != ball2 &&
+                !ball1.InRelation &&
+                !ball2.InRelation &&
+                Math.Sqrt(Math.Pow(ball1.X - ball2.X, 2) + Math.Pow((ball1.Y - ball2.Y), 2)) <= ball1.R + ball2.R;
         }
     }
 }
