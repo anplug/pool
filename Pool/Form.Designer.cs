@@ -32,7 +32,7 @@
             this.board = new System.Windows.Forms.PictureBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonResize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,13 +47,13 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(490, 12);
+            this.buttonStart.Location = new System.Drawing.Point(910, 12);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.Size = new System.Drawing.Size(50, 20);
             this.buttonStart.TabIndex = 1;
-            this.buttonStart.Text = "Start";
+            this.buttonStart.Text = "Spawn";
             this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.buttonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
             // timer
             // 
@@ -61,22 +61,22 @@
             this.timer.Interval = 17;
             this.timer.Tick += new System.EventHandler(this.TimerTick);
             // 
-            // button1
+            // buttonResize
             // 
-            this.button1.Location = new System.Drawing.Point(571, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(209, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Ни в коем случае не нажимать !!!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ResizeAllBalls);
+            this.buttonResize.Location = new System.Drawing.Point(966, 12);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(50, 20);
+            this.buttonResize.TabIndex = 2;
+            this.buttonResize.Text = "Resize";
+            this.buttonResize.UseVisualStyleBackColor = true;
+            this.buttonResize.Click += new System.EventHandler(this.ResizeBalls_Click);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 503);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonResize);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.board);
             this.MinimumSize = new System.Drawing.Size(835, 537);
@@ -89,10 +89,10 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox board;
+        public System.Windows.Forms.PictureBox board;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonResize;
     }
 }
 

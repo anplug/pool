@@ -3,8 +3,17 @@ using System.Drawing;
 
 namespace Pool
 {
+
     public class Ball
     {
+        public float X { get; private set; }
+        public float Y { get; private set; }
+        public float R { get; set; }
+        public double Angle { get; set; }
+        public bool IsMoving { get; set; }
+        public bool InRelation { get; set; }
+        public double Speed { get; set; }
+        public SolidBrush Brush { get; set; }
         public Ball(float x, float y, float r, double speed, double ang, bool isMov)
         {
             Init(x, y, r, speed, ang, isMov, false);
@@ -64,13 +73,5 @@ namespace Pool
                     IsMoving = false;
             }
         }
-        public float X { get; private set; }
-        public float Y { get; private set; }
-        public float R { get; set; }
-        public double Angle { get; set; }
-        public bool IsMoving { get; set; }
-        public bool InRelation { get; set; }
-        public double Speed { get; set; }
-        public SolidBrush Brush { get; set; }
     }
 }
