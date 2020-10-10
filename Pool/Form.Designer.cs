@@ -97,6 +97,7 @@
             // 
             // board
             // 
+            this.board.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.board.BackColor = System.Drawing.Color.DarkCyan;
             this.board.Location = new System.Drawing.Point(0, 0);
             this.board.Name = "board";

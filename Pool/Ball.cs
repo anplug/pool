@@ -24,7 +24,7 @@ namespace Pool
             this.Y = y;
             this.R = r;
             this.Speed = speed;
-            Angle = angle;
+            this.Angle = angle;
             this.IsMoving = isMoving;
             this.InRelation = inRelation;
             this.Brush = new SolidBrush(Color.White);
@@ -33,31 +33,31 @@ namespace Pool
         {
             if (IsMoving)
             {
-                X += (float)(Math.Sin(Angle) * R / (1 / Speed));
-                Y += (float)(Math.Cos(Angle) * R / (1 / Speed));
-                Speed -= Speed * 0.01;
+                X += (float)(Math.Cos(Angle) * R / (1 / Speed));
+                Y += (float)(Math.Sin(Angle) * R / (1 / Speed));
+                Speed -= Speed * 0.008;
 
                 if (X + R >= width)
                 {
                     X -= R - (width - X);
-                    Angle = -Angle;
+                    Angle = Math.PI - Angle;
                 }
                 if (X - R <= 0)
                 {
                     X += R - X;
-                    Angle = -Angle;
+                    Angle = Math.PI - Angle;
                 }
                 if (Y + R >= height)
                 {
                     Y -= R - (height - Y);
-                    Angle = Math.PI - Angle;
+                    Angle += (Math.PI - Angle) * 2 ;
                 }
                 if (Y - R <= 0)
                 {
                     Y += R - Y;
-                    Angle = Math.PI - Angle;
+                    Angle += (Math.PI - Angle) * 2;
                 }
-                if (Math.Abs(Speed) < 0.01)
+                if (Math.Abs(Speed) < 0.008)
                     IsMoving = false;
             }
         }
